@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;   
 
 use Log;
+use App\Models\VirusTotal;
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\Messages\Incoming\Answer;
 use BotMan\BotMan\Messages\Attachments\File;
@@ -52,6 +53,12 @@ class BotManController extends Controller
 
                 Log::debug($url);
                 Log::debug($payload);
+
+                $virusTotal = new VirusTotal();
+                $response = $virusTotal->scan($url);
+
+                Log::info("Virus Total");
+                Log::debug($response);
                 
             }
 
