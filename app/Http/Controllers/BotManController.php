@@ -41,20 +41,19 @@ class BotManController extends Controller
 
         $botman->receivesFiles(function($bot, $files) {
 
-            Log::debug("debug");
-
             $bot->reply("Files?");
+
+            $user = $bot->getUser();
+
+            Log::json_encode($user);
 
 
             foreach ($files as $file) {
         
                 $url = $file->getUrl(); // The direct url
-                $payload = $file->getPayload(); // The original payload
-
-                Log::debug($url);
-                Log::debug($payload);
-                Log::info("The bot");
-                Log::debug(json_encode($bot));
+                //$payload = $file->getPayload(); // The original payload
+                
+                Log::debug($url);          
 
                 //$virusTotal = new VirusTotal();
                 //$response = $virusTotal->scan($url);
