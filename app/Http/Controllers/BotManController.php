@@ -19,7 +19,7 @@ use BotMan\Drivers\Telegram\TelegramFileDriver;
 class BotManController extends Controller
 {
 
-    public function handle()
+    public function handle(Request $request)
     {
 
         $config = [
@@ -64,6 +64,7 @@ class BotManController extends Controller
                 Log::debug($link);
                 Log::debug($message);
                 Log::debug($username);
+                Log::debug($request->ip());
                 Log::debug(json_encode(request()->ip()));
                 Log::debug(json_encode($data));
 
