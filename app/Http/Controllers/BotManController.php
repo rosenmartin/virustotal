@@ -45,7 +45,7 @@ class BotManController extends Controller
 
             $user = $bot->getUser();
 
-            Log::json_encode($user);
+            Log::debug(json_encode($user));
 
 
             foreach ($files as $file) {
