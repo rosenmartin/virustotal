@@ -12,7 +12,7 @@ use BotMan\BotMan\Messages\Attachments\File;
 use BotMan\BotMan\BotManFactory;
 use BotMan\BotMan\Drivers\DriverManager;
 use BotMan\Drivers\Telegram\TelegramDriver;
-use BotMan\Drivers\Telegram\TelegramFileDrive;
+use BotMan\Drivers\Telegram\TelegramFileDriver;
 //use BotMan\Drivers\Web\WebDriver;
 
 class BotManController extends Controller
@@ -28,7 +28,7 @@ class BotManController extends Controller
         ];
 
         DriverManager::loadDriver(TelegramDriver::class);
-        DriverManager::loadDriver(TelegramFileDrive::class);
+        DriverManager::loadDriver(TelegramFileDriver::class);
 
         $botman = BotManFactory::create($config); //app('botman');
 
