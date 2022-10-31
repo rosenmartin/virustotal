@@ -66,7 +66,7 @@ class BotManController extends Controller
 
                 $msg = $link.'\r\n';
                 $msg.= $message;
-                $bot->reply($msg)
+                $bot->reply($msg);
                 
             }
 
