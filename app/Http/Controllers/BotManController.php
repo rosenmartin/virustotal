@@ -36,9 +36,7 @@ class BotManController extends Controller
 
         $botman->receivesFiles(function($bot, $files) {
 
-            $bot->reply("test?");
-
-         
+            // grab data of user 
             $user = $bot->getUser();
             $chat_id = $user->getId();
             $data = json_decode($bot->getMessage()->getPayload());
@@ -54,9 +52,10 @@ class BotManController extends Controller
                 $virusTotal = new VirusTotal();
                 $response = $virusTotal->scan($url);
                 
+                // grab data from virus total 
                 $resource = $response['resource'];
                 $link = $response['permalink'];
-                $message = $response['verbode_msg'];
+                $message = $response['verbose_msg'];
                 
                 Log::debug($chat_id);
                 Log::debug($message_id);
@@ -64,6 +63,7 @@ class BotManController extends Controller
                 Log::debug($link);
                 Log::debug($message);
 
+                // reply some response to user 
                 $msg = $link.'\r\n';
                 $msg.= $message;
                 $bot->reply($msg);
