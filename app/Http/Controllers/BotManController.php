@@ -10,8 +10,8 @@ use BotMan\BotMan\Messages\Incoming\Answer;
 use BotMan\BotMan\Messages\Attachments\File;
 
 //use BotMan\BotMan\BotManFactory;
-//use BotMan\BotMan\Drivers\DriverManager;
-//use BotMan\Drivers\Telegram\TelegramDriver;
+use BotMan\BotMan\Drivers\DriverManager;
+use BotMan\Drivers\Telegram\TelegramDriver;
 //use BotMan\Drivers\Web\WebDriver;
 
 class BotManController extends Controller
@@ -19,8 +19,13 @@ class BotManController extends Controller
 
     public function handle()
     {
+
+        DriverManager::loadDriver(TelegramDriver::class);
         $botman = app('botman');
         $botman->receivesFiles(function($bot, $files) {
+
+            Log::debug($bot);
+
 
             foreach ($files as $file) {
         
