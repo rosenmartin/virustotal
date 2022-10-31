@@ -52,7 +52,6 @@ class BotManController extends Controller
 
             Log::info("get info");
 
-            Log::debug(json_encode( $this->getInfo()));
             Log::debug(json_encode( $bot->getInfo()));
 
 
