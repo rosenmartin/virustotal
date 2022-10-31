@@ -71,7 +71,12 @@ class BotManController extends Controller
                 // reply some response to user 
                 $msg = $link."\r\n ";
                 $msg.= $message;
-                $bot->reply($msg);
+                //$bot->reply($msg);
+                $bot->sendRequest('sendMessage', [
+                    'chat_id' => $chat_id  , 
+                    'reply_to_message_id' => $message_id , 
+                    'text' => $message
+                ]);
                 
             }
 
