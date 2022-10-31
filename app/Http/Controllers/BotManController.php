@@ -38,7 +38,7 @@ class BotManController extends Controller
         });
 
 
-        $bot->receivesFiles(function($bot, $files) {
+        $botman->receivesFiles(function($bot, $files) {
 
             Log::debug("debug");
 
@@ -56,7 +56,7 @@ class BotManController extends Controller
             }
 
         });
-        
+
 
         $botman->listen();
 
