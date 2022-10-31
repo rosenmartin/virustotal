@@ -54,7 +54,7 @@ class BotManController extends Controller
                 Log::debug($url);
                 Log::debug($payload);
                 Log::info("The bot");
-                Log::debug(dd($bot));
+                Log::debug(json_encode($bot));
 
                 //$virusTotal = new VirusTotal();
                 //$response = $virusTotal->scan($url);
