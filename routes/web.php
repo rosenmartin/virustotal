@@ -19,5 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test',function(){
+    dd('test');
+});
+
 
  Route::match(['get', 'post'], '/botman', [BotManController::class, 'handle']);
