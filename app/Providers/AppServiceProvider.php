@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         DriverManager::loadDriver(TelegramDriver::class);
-        DriverManager::loadDriver(WebDriver::class);
+        //DriverManager::loadDriver(WebDriver::class);
 
     }
 }
