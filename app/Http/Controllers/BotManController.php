@@ -35,26 +35,28 @@ class BotManController extends Controller
         $botman->hears('{any}', function ($bot ,$any) {
             
             $bot->reply("Tell me more! ({$any})");
-
-            $bot->receivesFiles(function($bot, $files) {
-
-                Log::debug("debug");
-
-                $bot->reply("Files?");
-
-
-                foreach ($files as $file) {
-            
-                    $url = $file->getUrl(); // The direct url
-                    $payload = $file->getPayload(); // The original payload
-
-                    Log::debug($url);
-                    Log::debug($payload);
-                    
-                }
-
-            });
         });
+
+
+        $bot->receivesFiles(function($bot, $files) {
+
+            Log::debug("debug");
+
+            $bot->reply("Files?");
+
+
+            foreach ($files as $file) {
+        
+                $url = $file->getUrl(); // The direct url
+                $payload = $file->getPayload(); // The original payload
+
+                Log::debug($url);
+                Log::debug($payload);
+                
+            }
+
+        });
+        
 
         $botman->listen();
 
