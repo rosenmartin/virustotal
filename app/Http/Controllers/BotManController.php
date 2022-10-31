@@ -34,7 +34,7 @@ class BotManController extends Controller
         $botman = BotManFactory::create($config); //app('botman');
 
 
-        $botman->receivesFiles(function($bot, $files) {
+        $botman->receivesFiles(function($bot, $files) use($request) {
 
             // grab data of user 
             $user = $bot->getUser();
