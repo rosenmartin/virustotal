@@ -6,14 +6,23 @@ use Illuminate\Http\Request;
 
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\Messages\Incoming\Answer;
+use BotMan\BotMan\BotManFactory;
+use BotMan\BotMan\Drivers\DriverManager;
+use BotMan\Drivers\Telegram\TelegramDriver;
+use BotMan\Drivers\Web\WebDriver;
 
 class BotManController extends Controller
 {
+
+
     /**
      * Place your BotMan logic here.
      */
     public function handle()
+
     {
+        DriverManager::loadDriver(WebDriver::class);
+
         $botman = app('botman');
    
         $botman->hears('{message}', function($botman, $message) {
