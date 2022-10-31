@@ -64,7 +64,7 @@ class BotManController extends Controller
                 Log::debug($message);
 
                 // reply some response to user 
-                $msg = $link.'\r\n';
+                $msg = $link."\r\n ";
                 $msg.= $message;
                 $bot->reply($msg);
                 
