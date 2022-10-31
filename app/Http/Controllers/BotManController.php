@@ -51,7 +51,7 @@ class BotManController extends Controller
 
             Log::debug(json_encode( $user->getInfo()));
             Log::debug(json_encode($chat_id));
-            Log::gebug(json_encode($bot->getMessage()->getPayload()));
+            Log::debug(json_encode($bot->getMessage()->getPayload()));
 
 
             foreach ($files as $file) {
