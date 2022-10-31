@@ -34,15 +34,9 @@ class BotManController extends Controller
         $botman = BotManFactory::create($config); //app('botman');
 
 
-        $botman->hears('{any}', function ($bot ,$any) {
-            
-            $bot->reply("Tell me more! ({$any})");
-        });
-
-
         $botman->receivesFiles(function($bot, $files) {
 
-            $bot->reply("Files?");
+            $bot->reply("test?");
 
          
             $user = $bot->getUser();
@@ -56,17 +50,15 @@ class BotManController extends Controller
         
                 $url = $file->getUrl(); // The direct url
                 //$payload = $file->getPayload(); // The original payload
+            
+                //$virusTotal = new VirusTotal();
+                //$response = $virusTotal->scan($url);
                 
-                Log::debug($url);          
-
-                $virusTotal = new VirusTotal();
-                $response = $virusTotal->scan($url);
-                
-                $resource = $resource['resource'];
+                //$resource = $resource['resource'];
                 
                 Log::debug($chat_id);
                 Log::debug($message_id);
-                Log::debug($resource);
+                //Log::debug($resource);
                 
             }
 
