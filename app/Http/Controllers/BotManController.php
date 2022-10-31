@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;   
 
+use Log;
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\Messages\Incoming\Answer;
+use BotMan\BotMan\Messages\Attachments\File;
 
 //use BotMan\BotMan\BotManFactory;
 //use BotMan\BotMan\Drivers\DriverManager;
@@ -15,19 +17,31 @@ use BotMan\BotMan\Messages\Incoming\Answer;
 class BotManController extends Controller
 {
 
+    public function handle()
+    {
+        $botman = app('botman');
+        $botman->receivesFiles(function($bot, $files) {
 
-    /**
-     * Place your BotMan logic here.
-     */
+            foreach ($files as $file) {
+        
+                $url = $file->getUrl(); // The direct url
+                $payload = $file->getPayload(); // The original payload
+
+                Log::debug($url);
+                Log::debug($payload);
+                
+            }
+
+            $bot->reply("Tell me more!");
+        });
+
+    }
+
+
+    /*
     public function handle()
 
     {
-        /*DriverManager::loadDriver(WebDriver::class);
-        $botman = BotManFactory::create([ 
-            'matchingData' => ['driver' => 'web']
-        ]);*/
-
-
         $botman = app('botman');
    
         $botman->hears('{message}', function($botman, $message) {
@@ -43,12 +57,9 @@ class BotManController extends Controller
         });
    
         $botman->listen();
-    }
+    }*/
    
-    /**
-     * Place your BotMan logic here.
-     */
-    public function askName($botman)
+    /*public function askName($botman)
     {
         $botman->ask('Hello! What is your Name?', function(Answer $answer) {
    
@@ -56,5 +67,5 @@ class BotManController extends Controller
    
             $this->say('Nice to meet you '.$name);
         });
-    }
+    }*/
 }
