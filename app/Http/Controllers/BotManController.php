@@ -9,7 +9,7 @@ use BotMan\BotMan\BotMan;
 use BotMan\BotMan\Messages\Incoming\Answer;
 use BotMan\BotMan\Messages\Attachments\File;
 
-//use BotMan\BotMan\BotManFactory;
+use BotMan\BotMan\BotManFactory;
 use BotMan\BotMan\Drivers\DriverManager;
 use BotMan\Drivers\Telegram\TelegramDriver;
 //use BotMan\Drivers\Web\WebDriver;
@@ -20,24 +20,37 @@ class BotManController extends Controller
     public function handle()
     {
 
+        $config = [
+            'telegram' => [
+                'token' => config('botman.telegram.token'),
+            ]
+        ];
+
         DriverManager::loadDriver(TelegramDriver::class);
-        $botman = app('botman');
-        $botman->receivesFiles(function($bot, $files) {
+        $botman = BotManFactory::create($config); //app('botman');
 
-            Log::debug($bot);
+        $botman->hears('{any}', function ($bot ,$any) {
+            
+            $bot->reply("Tell me more! ({$any})");
+
+            $bot->receivesFiles(function($bot, $files) {
+
+                Log::debug("debug");
+
+                $bot->reply("Files?");
 
 
-            foreach ($files as $file) {
-        
-                $url = $file->getUrl(); // The direct url
-                $payload = $file->getPayload(); // The original payload
+                foreach ($files as $file) {
+            
+                    $url = $file->getUrl(); // The direct url
+                    $payload = $file->getPayload(); // The original payload
 
-                Log::debug($url);
-                Log::debug($payload);
-                
-            }
+                    Log::debug($url);
+                    Log::debug($payload);
+                    
+                }
 
-            $bot->reply("Tell me more!");
+            });
         });
 
         $botman->listen();
