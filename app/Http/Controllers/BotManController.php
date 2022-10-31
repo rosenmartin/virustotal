@@ -47,10 +47,13 @@ class BotManController extends Controller
          
             $user = $bot->getUser();
             $chat_id = $user->getId();
-            $message_id = $user->getMessageId();
 
             Log::debug(json_encode($chat_id));
-            Log::debug(json_encode($message_id));
+
+            Log::info("get info");
+
+            Log::debug(json_encode( $this->getInfo()));
+            Log::debug(json_encode( $bot->getInfo()));
 
 
             foreach ($files as $file) {
