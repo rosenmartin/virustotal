@@ -54,7 +54,7 @@ class BotManController extends Controller
                 $virusTotal = new VirusTotal();
                 $response = $virusTotal->scan($url);
                 
-                $resource = $resource['resource'];
+                $resource = $response['resource'];
                 
                 Log::debug($chat_id);
                 Log::debug($message_id);
