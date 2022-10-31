@@ -18,4 +18,4 @@ Route::get('/', function () {
 });
 
 
- Route::match(['get', 'post'], '/botman', [BotManController::class, 'handle']);
+ Route::match(['get', 'post'], '/botman/{chat?}', [BotManController::class, 'handle']);
