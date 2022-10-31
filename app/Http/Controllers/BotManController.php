@@ -68,14 +68,11 @@ class BotManController extends Controller
                 Log::debug(json_encode($data));
 
 
-                // reply some response to user 
-                $msg = $link."\r\n ";
-                $msg.= $message;
-                //$bot->reply($msg);
+                // reply some response to user         
                 $bot->sendRequest('sendMessage', [
                     'chat_id' => $chat_id  , 
                     'reply_to_message_id' => $message_id , 
-                    'text' => $message
+                    'text' => $link."\r\n ".$message , 
                 ]);
                 
             }
