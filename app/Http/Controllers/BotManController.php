@@ -33,10 +33,6 @@ class BotManController extends Controller
 
         $botman = BotManFactory::create($config); //app('botman');
 
-        $user = $botman->getUser();
-
-        Log::debug(json_encode($user));
-
 
         $botman->hears('{any}', function ($bot ,$any) {
             
@@ -49,6 +45,12 @@ class BotManController extends Controller
             $bot->reply("Files?");
 
          
+            $user = $bot->getUser();
+            $chat_id = $user->getId();
+            $message_id = $user->getMessageId();
+
+            Log::debug(json_encode($chat_id));
+            Log::debug(json_encode($message_id));
 
 
             foreach ($files as $file) {
