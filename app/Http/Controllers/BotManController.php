@@ -47,11 +47,7 @@ class BotManController extends Controller
          
             $user = $bot->getUser();
             $chat_id = $user->getId();
-
-
-            Log::debug(json_encode( $user->getInfo()));
-            Log::debug(json_encode($chat_id));
-            Log::debug(json_encode($bot->getMessage()->getPayload()));
+            $message_id = $bot->getMessage()->getPayload()['"message_id"']
 
 
             foreach ($files as $file) {
@@ -61,11 +57,14 @@ class BotManController extends Controller
                 
                 Log::debug($url);          
 
-                //$virusTotal = new VirusTotal();
-                //$response = $virusTotal->scan($url);
-
-                //Log::info("Virus Total");
-                //Log::debug($response);
+                $virusTotal = new VirusTotal();
+                $response = $virusTotal->scan($url);
+                
+                $resource = $resource['resource'];
+                
+                Log::debug($chat_id);
+                Log::debug($message_id);
+                Log::debug($resource);
                 
             }
 
