@@ -55,11 +55,18 @@ class BotManController extends Controller
                 $response = $virusTotal->scan($url);
                 
                 $resource = $response['resource'];
+                $link = $response['permalink'];
+                $message = $response['verbode_msg'];
                 
                 Log::debug($chat_id);
                 Log::debug($message_id);
                 Log::debug($resource);
-                Log::debug(json_encode($response));
+                Log::debug($link);
+                Log::debug($message);
+
+                $msg = $link.'\r\n';
+                $msg.= $message;
+                $bot->reply($msg)
                 
             }
 
