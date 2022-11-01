@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Log;
 use Illuminate\Console\Command;
 
 use App\Models\File as Incoming;
@@ -45,8 +46,6 @@ class CheckFiles extends Command
 
                 $vt = new VirusTotal();
                 $response = $vt->report($msg->resource);
-
-                Log::debug(json_encode($response));
     
                 if($response['response_code']==1&&isset($response['scan_date'])&&!empty($response['scan_date'])){
                 
