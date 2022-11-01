@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 
 use App\Models\File as Incoming;
+use App\Models\Telegram;
 use App\Models\VirusTotal;
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\Messages\Incoming\Answer;
@@ -37,19 +38,8 @@ class CheckFiles extends Command
      */
     public function handle()
     {
-
-        $config = [
-            'telegram' => [
-                'token' => config('botman.telegram.token'),
-            ]
-        ];
-
-        DriverManager::loadDriver(TelegramDriver::class);
-        DriverManager::loadDriver(TelegramFileDriver::class);
-
-        $botman = BotManFactory::create($config); 
-
         $msgs = Incoming::where('isSent','0')->orderBy('id','desc')->get();
+
         if(!$msgs->isEmpty()){
             foreach ($msgs as $msg) {
 
@@ -58,14 +48,18 @@ class CheckFiles extends Command
 
                 //dd($response);
     
-                $botman->sendRequest('sendMessage', [
-                        'chat_id' => $msg->chat_id  , 
-                        'reply_to_message_id' => $msg->message_id , 
-                        'text' => $response['permalink']."\r\n ".$response['verbose_msg'] , 
-                ]);
-    
-                $msg->isSent = 1 ; 
-                $msg->save();
+                if($response['response_code']==1&&isset($response['scan_date'])&&!empty($response['scan_date'])){
+                
+
+                    
+                    $tl = new Telegram($msg->chat_id,$msg->message_id);
+                    $botmessage = "[".$response['verbose_msg']."](". $response['permalink'].")";
+                    $tl->send_message($botmessage);        
+
+        
+                    $msg->isSent = 1 ; 
+                    $msg->save();
+                }
             }
         }
     }

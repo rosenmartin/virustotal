@@ -68,7 +68,7 @@ class BotManController extends Controller
                 $newmsg->resource = $resource;
                 $newmsg->link = $link;
                 $newmsg->save();
-                
+
                 //Log::debug($chat_id);
                 //Log::debug($message_id);
                 //Log::debug($resource);
@@ -77,12 +77,14 @@ class BotManController extends Controller
                 //Log::debug($username);
                 //Log::debug($request->ip());
 
+                $botresponse = "[".$message."](".$link.")";
+
 
                 // reply some response to user         
                 $bot->sendRequest('sendMessage', [
                     'chat_id' => $chat_id  , 
                     'reply_to_message_id' => $message_id , 
-                    'text' => $link."\r\n ".$message , 
+                    'text' => $botresponse , 
                 ]);
                 
             }
