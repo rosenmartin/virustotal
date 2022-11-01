@@ -36,7 +36,7 @@ class VirusTotal extends Model
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->url.$target);
         curl_setopt($ch, CURLOPT_POST, True);
-        curl_setopt($ch, CURLOPT_VERBOSE, 1); // remove this if your not debugging
+        //curl_setopt($ch, CURLOPT_VERBOSE, 1); // remove this if your not debugging
         curl_setopt($ch, CURLOPT_ENCODING, 'gzip,deflate'); // please compress data
         curl_setopt($ch, CURLOPT_USERAGENT, "gzip, My php curl client");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER ,True);
