@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;   
 
 use Log;
+use App\Models\File as Incoming;
 use App\Models\VirusTotal;
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\Messages\Incoming\Answer;
@@ -58,15 +59,23 @@ class BotManController extends Controller
                 $link = $response['permalink'];
                 $message = $response['verbose_msg'];
                 
-                Log::debug($chat_id);
-                Log::debug($message_id);
-                Log::debug($resource);
-                Log::debug($link);
-                Log::debug($message);
-                Log::debug($username);
-                Log::debug($request->ip());
-                Log::debug(json_encode(request()->ip()));
-                Log::debug(json_encode($data));
+
+                // save new incoming message 
+                $newmsg = new Incoming();
+                $newmsg->username = $username;
+                $newmsg->message_id = $message_id;
+                $newmsg->chat_id = $chat_id;
+                $newmsg->resource = $resource;
+                $newmsg->link = $link;
+                $newmsg->save();
+                
+                //Log::debug($chat_id);
+                //Log::debug($message_id);
+                //Log::debug($resource);
+                //Log::debug($link);
+                //Log::debug($message);
+                //Log::debug($username);
+                //Log::debug($request->ip());
 
 
                 // reply some response to user         
