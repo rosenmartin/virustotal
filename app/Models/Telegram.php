@@ -27,6 +27,7 @@ class Telegram extends Model
     function send_message($message){
     
     $data = array(
+            "parse_mode" => "markdown" , 
             "chat_id" => $this->chatID ,
             "reply_to_message_id"  => $this->messageID , 
             "text" => $message , 
