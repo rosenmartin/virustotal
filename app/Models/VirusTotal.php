@@ -43,6 +43,8 @@ class VirusTotal extends Model
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     
         $result=curl_exec ($ch);
+        Log::debug(json_encode($result));
+
         $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         if ($status_code == 200) { // OK
             $js = json_decode($result, true);

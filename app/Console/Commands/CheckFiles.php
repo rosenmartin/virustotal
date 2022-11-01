@@ -46,7 +46,7 @@ class CheckFiles extends Command
                 $vt = new VirusTotal();
                 $response = $vt->report($msg->resource);
 
-                //dd($response);
+                Log::debug(json_encode($response));
     
                 if($response['response_code']==1&&isset($response['scan_date'])&&!empty($response['scan_date'])){
                 
