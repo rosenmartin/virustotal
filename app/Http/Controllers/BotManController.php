@@ -43,6 +43,8 @@ class BotManController extends Controller
             $username = $user->getUsername();
             $data = json_decode($bot->getMessage()->getPayload());
             $message_id = $data->message_id;
+
+            Log::debug(json_encode($data));
             
 
 
