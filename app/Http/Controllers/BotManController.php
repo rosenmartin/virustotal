@@ -44,7 +44,7 @@ class BotManController extends Controller
             $message_id = $data->message_id;
             $chat_id = $data->chat->id;
 
-            Log::debug(json_encode($data));
+            //Log::debug(json_encode($data));
             
 
 
