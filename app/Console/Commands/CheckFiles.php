@@ -49,10 +49,12 @@ class CheckFiles extends Command
     
                 if(!empty($response)&&$response['response_code']==1&&isset($response['scan_date'])&&!empty($response['scan_date'])){
                 
-
+  
                     
                     $tl = new Telegram($msg->chat_id,$msg->message_id);
-                    $botmessage = $response['positives'] . ' / ' . $response['total']."\r\n";
+                    $icon = ($response['positives']) ? 'u\U0000274c' : 'u\U00002714' ;
+                    $botmessage = $icon."\r\n";
+                    $botmessage .= $response['positives'] . ' / ' . $response['total']."\r\n";
                     $botmessage .= "[".$response['verbose_msg']."](". $response['permalink'].")";
                     $tl->send_message($botmessage);        
 
