@@ -52,11 +52,11 @@ class CheckFiles extends Command
   
                     
                     $tl = new Telegram($msg->chat_id,$msg->message_id);
-                    $icon = ($response['positives']) ? 'u\U0000274c' : 'u\U00002714' ;
+                    $icon = ($response['positives']) ? ':no_entry_sign:' : ':white_check_mark:' ;
                     $botmessage = $icon."\r\n";
                     $botmessage .= $response['positives'] . ' / ' . $response['total']."\r\n";
-                    //$botmessage .= "[".$response['verbose_msg']."](". $response['permalink'].")";
-                    $botmessage .= '<a href="'.$response['permalink'].'">'.$response['verbose_msg'].'</a>';
+                    $botmessage .= "[".$response['verbose_msg']."](". $response['permalink'].")";
+                    //$botmessage .= '<a href="'.$response['permalink'].'">'.$response['verbose_msg'].'</a>';
                     $tl->send_message($botmessage);        
 
         
