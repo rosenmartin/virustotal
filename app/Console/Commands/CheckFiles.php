@@ -39,7 +39,7 @@ class CheckFiles extends Command
      */
     public function handle()
     {
-        $msgs = Incoming::where('isSent','0')->orderBy('id','desc')->get();
+        $msgs = Incoming::where('isSent','0')->orderBy('id','desc')->take(4)->get();
 
         if(!$msgs->isEmpty()){
             foreach ($msgs as $msg) {
