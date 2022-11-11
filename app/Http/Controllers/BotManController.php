@@ -35,11 +35,11 @@ class BotManController extends Controller
         $botman = BotManFactory::create($config); //app('botman');
 
 
-        $botman->hears('{any}', function ($bot,$any) {
+        /*$botman->hears('{any}', function ($bot,$any) {
             $bot->reply('Hello '.$any);
             $bot->reply('✅');
             $bot->reply('❌');
-        });
+        });*/
 
 
         $botman->receivesFiles(function($bot, $files) use($request) {
