@@ -52,7 +52,7 @@ class CheckFiles extends Command
   
                     
                     $tl = new Telegram($msg->chat_id,$msg->message_id);
-                    $icon = ($response['positives']) ? '\xE2\x9D\x8C' : '\xE2\x9C\x85' ;
+                    $icon = ($response['positives']) ? 'test' : 'test' ;
                     $botmessage = $icon."\r\n";
                     $botmessage .= $response['positives'] . ' / ' . $response['total']."\r\n";
                     $botmessage .= "[".$response['verbose_msg']."](". $response['permalink'].")";

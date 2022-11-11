@@ -36,11 +36,9 @@ class BotManController extends Controller
 
 
         $botman->hears('{any}', function ($bot,$any) {
-            $bot->reply('Hello {$any}');
-            $bot->reply('023405');
-            $bot->reply('&023405');
-            $bot->reply('U+2705');
-
+            $bot->reply('Hello '.$any);
+            $bot->reply('✅');
+            $bot->reply('❌');
         });
 
 
