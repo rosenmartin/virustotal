@@ -56,7 +56,7 @@ class CheckFiles extends Command
                     $botmessage = $icon."\r\n";
                     $botmessage .= $response['positives'] . ' / ' . $response['total']."\r\n";
                     //$botmessage .= "[".$response['verbose_msg']."](". $response['permalink'].")";
-                    $botmessage .= '<a href="'.$response['permalink'].'">'.$response['versbose_msg'].'</a>';
+                    $botmessage .= '<a href="'.$response['permalink'].'">'.$response['verbose_msg'].'</a>';
                     $tl->send_message($botmessage);        
 
         
